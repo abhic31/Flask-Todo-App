@@ -1,0 +1,67 @@
+
+
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  <h1>Update your todo's</h1>
+  <form action="/Update/{{todo.sno}}" method="post">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">todo title</label>
+        <input type="text" class="form-control" name="title" id="exampleInputEmail1" value="{{todo.title}}" aria-describedby="emailHelp">
+        
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">details</label>
+        <input type="text" class="form-control" name="desc" value="{{todo.desc}}" id="exampleInputPassword1">
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button type="submit" class="btn btn-outline-success">Update</button>
+    </form>
+  
+    <h1>Your todo's</h1>
+  
+    <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">sno</th>
+        <th scope="col">Title</th>
+        <th scope="col">desc</th>
+        <th scope="col">time</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% if allTodo|length == 0 %}
+  
+            no record
+        {% endif %}
+        {% for todo in alltodo %}
+        <tr>
+          <th scope="row">{{loop.index}}</th>
+          <td>{{todo.title}}</td>
+          <td>{{todo.desc}}</td>
+          <td>{{todo.date_created}}</td>
+          <td>
+              <a href="/Update/{{todo.sno}}" type="button" class="btn btn-dark">Update</button>
+              <a href="/Delete/{{todo.sno}}" type="button" class="btn btn-dark">Delete</button>
+          </td>
+  
+        </tr>
+        {% endfor %}
+      
+      
+      
+    </tbody>
+  </table>
+  
+  
+  
+  
+  
